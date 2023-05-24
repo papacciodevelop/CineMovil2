@@ -154,7 +154,7 @@ public class DetailMovieActivity extends AppCompatActivity {
                             peliculaModel.setPosterPath(Thumbnail);
                             peliculaModel.setBackdropPath(Cover);
                             peliculaModel.setPopularity(Popularity);
-
+//añade
                             dbHandler.addFavoriteMovie(peliculaModel);
                             Snackbar.make(buttonView, peliculaModel.getTitle() + " Added to Favorite",
                                     Snackbar.LENGTH_SHORT).show();
