@@ -24,8 +24,7 @@ import com.carlos.cinemovil.R;
 import com.carlos.cinemovil.activities.DetailTelevisionActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.ramotion.cardslider.CardSliderLayoutManager;
-import com.ramotion.cardslider.CardSnapHelper;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,8 +91,7 @@ public class FragmentSeries extends Fragment implements TvHorizontalAdapter.onSe
 
         rvNowPlaying = rootView.findViewById(R.id.rvNowPlaying);
         rvNowPlaying.setHasFixedSize(true);
-        rvNowPlaying.setLayoutManager(new CardSliderLayoutManager(getActivity()));
-        new CardSnapHelper().attachToRecyclerView(rvNowPlaying);
+
 
         rvFilmRecommend = rootView.findViewById(R.id.rvFilmRecommend);
         rvFilmRecommend.setLayoutManager(new LinearLayoutManager(getActivity()));
