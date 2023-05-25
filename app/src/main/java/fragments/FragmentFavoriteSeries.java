@@ -38,9 +38,6 @@ public class FragmentFavoriteSeries extends Fragment implements AdapterSeries.on
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ventana_fav_peliculas, container, false);
 
-
-
-
         dbHandler = new DBHandler(getActivity());
 
         rvMovieFav = rootView.findViewById(R.id.rvMovieFav);

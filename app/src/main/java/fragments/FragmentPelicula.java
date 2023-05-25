@@ -69,8 +69,6 @@ public class FragmentPelicula extends Fragment implements AdapterPeliculaVertica
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-
-
         searchFilm = rootView.findViewById(R.id.searchFilm);
         searchFilm.setQueryHint(getString(R.string.search_film));
         searchFilm.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
