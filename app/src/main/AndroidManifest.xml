@@ -23,7 +23,7 @@
             android:value="ca-app-pub-9817315864286162~5605817680"/>
 
         <activity android:name=".activities.DetailMovieActivity" />
-        <activity android:name=".activities.DetailTelevisionActivity" />
+        <activity android:name=".activities.DetailSerieActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

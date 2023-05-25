@@ -30,6 +30,8 @@ public class AdapterSeries extends RecyclerView.Adapter<AdapterSeries.ViewHolder
     private List<SerieModel> items;
     private AdapterSeries.onSelectData onSelectData;
     private Context mContext;
+
+
     private double Rating;
 
     public interface onSelectData {

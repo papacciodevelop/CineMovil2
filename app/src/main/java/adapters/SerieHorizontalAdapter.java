@@ -21,17 +21,17 @@ import networking.endpointApi;
 /**
  * Created by Carlos Chica.
  */
-public class TvHorizontalAdapter extends RecyclerView.Adapter<TvHorizontalAdapter.ViewHolder> {
+public class SerieHorizontalAdapter extends RecyclerView.Adapter<SerieHorizontalAdapter.ViewHolder> {
 
     private List<SerieModel> items;
-    private TvHorizontalAdapter.onSelectData onSelectData;
+    private SerieHorizontalAdapter.onSelectData onSelectData;
     private Context mContext;
 
     public interface onSelectData {
         void onSelected(SerieModel serieModel);
     }
 
-    public TvHorizontalAdapter(Context context, List<SerieModel> items, TvHorizontalAdapter.onSelectData xSelectData) {
+    public SerieHorizontalAdapter(Context context, List<SerieModel> items, SerieHorizontalAdapter.onSelectData xSelectData) {
         this.mContext = context;
         this.items = items;
         this.onSelectData = xSelectData;

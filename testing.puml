@@ -1,0 +1,332 @@
+
+@startuml
+class utils_extensions.BottomBarBehavior {
+- int height
++ boolean onLayoutChild(CoordinatorLayout,BubbleNavigationLinearView,int)
++ boolean onStartNestedScroll(CoordinatorLayout,BubbleNavigationLinearView,View,View,int)
++ void onNestedScroll(CoordinatorLayout,BubbleNavigationLinearView,View,int,int,int,int)
+- void slideUp(BubbleNavigationLinearView)
+- void slideDown(BubbleNavigationLinearView)
+}
+class adapters.AdapterPelicula {
+- List<PeliculaModel> items
+- AdapterPelicula.onSelectData onSelectData
+- Context mContext
+- double Rating
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+interface adapters.AdapterPelicula$onSelectData {
+~ void onSelected(PeliculaModel)
+}
+class adapters.AdapterPelicula$ViewHolder {
++ CardView cvFilm
++ ImageView imgPhoto
++ TextView tvTitle
++ TextView tvRealeseDate
++ TextView tvDesc
++ RatingBar ratingBar
+}
+class networking.endpointApi {
++ {static} String BASEURL
++ {static} String APIKEY
++ {static} String REGION
++ {static} String LANGUAGE
++ {static} String UPCOMING_RAIL_SERIES
++ {static} String TV_PLAYNOW
++ {static} String TV_POPULAR
++ {static} String URLIMAGE
++ {static} String URLFILM
++ {static} String MOVIE_VIDEO
++ {static} String TV_VIDEO
++ {static} String SEARCH_MOVIE
++ {static} String SEARCH_TV
++ {static} String QUERY
++ {static} String MOVIE_PLAYNOW
++ {static} String MOVIE_POPULAR
++ {static} String UPCOMING_RAIL_FILM
+}
+class adapters.ViewPageAdapter {
+- Fragment[] tabFragments
++ Fragment getItem(int)
++ int getCount()
+}
+class fragments.FragmentFavoritePeliculas {
+- RecyclerView rvMovieFav
+- List<PeliculaModel> peliculaModel
+- DBHandler dbHandler
+- TextView txtNoData
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void setData()
++ void onSelected(PeliculaModel)
++ void onResume()
+}
+class adapters.SerieHorizontalAdapter {
+- List<SerieModel> items
+- SerieHorizontalAdapter.onSelectData onSelectData
+- Context mContext
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+interface adapters.SerieHorizontalAdapter$onSelectData {
+~ void onSelected(SerieModel)
+}
+class adapters.SerieHorizontalAdapter$ViewHolder {
++ ImageView imgPhoto
+}
+class com.carlos.cinemovil.activities.DetailMovieActivity {
+~ Toolbar toolbar
+~ TextView tvTitle
+~ ImageView imgCover
+~ MaterialFavoriteButton imgFavorite
+~ FloatingActionButton fabShare
+~ RatingBar ratingBar
+~ String NameFilm
+~ int Id
+~ double Rating
+~ PeliculaModel peliculaModel
+~ List<TrailerModel> trailerModel
+~ DBHandler dbHandler
+# void onCreate(Bundle)
+- void getTrailer()
++ {static} void setWindowFlag(Activity,int,boolean)
++ boolean onOptionsItemSelected(MenuItem)
+}
+class modelos.SerieModel {
+- int Id
+- String Name
+- double VoteAverage
+- String PosterPath
+- String BackdropPath
+- String Popularity
+- String Overview
+- String ReleaseDate
++ int getId()
++ void setId(int)
++ String getName()
++ void setName(String)
++ double getVoteAverage()
++ void setVoteAverage(double)
++ String getOverview()
++ void setOverview(String)
++ String getReleaseDate()
++ void setReleaseDate(String)
++ String getPosterPath()
++ void setPosterPath(String)
++ String getBackdropPath()
++ void setBackdropPath(String)
++ String getPopularity()
++ void setPopularity(String)
+}
+class adapters.AdapterPeliculaVertical {
+- List<PeliculaModel> items
+- AdapterPeliculaVertical.onSelectData onSelectData
+- Context mContext
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+interface adapters.AdapterPeliculaVertical$onSelectData {
+~ void onSelected(PeliculaModel)
+}
+class adapters.AdapterPeliculaVertical$ViewHolder {
++ ImageView imgPhoto
+}
+class modelos.PeliculaModel {
+- int Id
+- String Title
+- String ReleaseDate
+- String Popularity
+- String PosterPath
+- double VoteAverage
+- String Overview
+- String BackdropPath
++ int getId()
++ void setId(int)
++ String getTitle()
++ void setTitle(String)
++ double getVoteAverage()
++ void setVoteAverage(double)
++ String getOverview()
++ void setOverview(String)
++ String getReleaseDate()
++ void setReleaseDate(String)
++ String getPosterPath()
++ void setPosterPath(String)
++ String getBackdropPath()
++ void setBackdropPath(String)
++ String getPopularity()
++ void setPopularity(String)
+}
+class BBDD.DBHelper {
+- {static} int DATABASE_VERSION
+- {static} String DATABASE_NAME
++ {static} String TABLE_MOVIES
++ {static} String TABLE_TV
++ {static} String KEY_ID
++ {static} String KEY_TITLE
++ {static} String KEY_NAME
++ {static} String KEY_VOTE_AVERAGE
++ {static} String KEY_OVERVIEW
++ {static} String KEY_RELEASE_DATE
++ {static} String KEY_POSTER_PATH
++ {static} String KEY_BACKDROP_PATH
++ {static} String KEY_POPULARITY
+- {static} String CREATE_TABLE_MOVIES
+- {static} String CREATE_TABLE_TV_SHOWS
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
+}
+class adapters.AdapterSeries {
+- List<SerieModel> items
+- AdapterSeries.onSelectData onSelectData
+- Context mContext
+- double Rating
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+interface adapters.AdapterSeries$onSelectData {
+~ void onSelected(SerieModel)
+}
+class adapters.AdapterSeries$ViewHolder {
++ CardView cvFilm
++ ImageView imgPhoto
++ TextView tvTitle
++ TextView tvRealeseDate
++ TextView tvDesc
++ RatingBar ratingBar
+}
+class BBDD.DBHandler {
+- DBHelper dbHelper
++ void addFavoriteMovie(PeliculaModel)
++ void addFavoriteTV(SerieModel)
++ ArrayList<PeliculaModel> showFavoriteMovie()
++ ArrayList<SerieModel> showFavoriteTV()
++ void deleteFavoriteMovie(int)
++ void deleteFavoriteTV(int)
+}
+class fragments.FragmentFavoriteSeries {
+- RecyclerView rvMovieFav
+- List<SerieModel> serieModel
+- DBHandler dbHandler
+- TextView txtNoData
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void setData()
++ void onSelected(SerieModel)
++ void onResume()
+}
+class com.carlos.cinemovil.activities.MainActivity {
+~ Fragment fragment
+- AdView mAdView
+# void onCreate(Bundle)
+}
+class fragments.FragmentFavorite {
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+}
+class fragments.FragmentPelicula {
+- RecyclerView rvNowPlaying
+- AdapterPeliculaVertical movieHorizontalAdapter
+- AdapterPelicula movieAdapter
+- SearchView searchFilm
+- List<PeliculaModel> moviePlayNow
+- List<PeliculaModel> moviePopular
+- RecyclerView rvNewSection
+- List<PeliculaModel> movieNewSection
+- AdapterPeliculaVertical movieNewSectionAdapter
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void setSearchMovie(String)
+- void getMovieHorizontal()
+- void getNewSectionMovies()
+- void getMovie()
+- void showMovie()
+- void showMovieVertical()
+- void showNewSectionMovies()
++ void onSelected(PeliculaModel)
+}
+class modelos.TrailerModel {
+- String key
+- String type
++ String getKey()
++ void setKey(String)
++ String getType()
++ void setType(String)
+}
+class fragments.FragmentSeries {
+- RecyclerView rvNowPlaying
+- SerieHorizontalAdapter serieHorizontalAdapter
+- AdapterSeries adapterSeries
+- SearchView searchFilm
+- List<SerieModel> tvPlayNow
+- List<SerieModel> tvPopular
+- List<SerieModel> newSeriesSection
+- SerieHorizontalAdapter newSeriesSectionAdapter
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void setSearchTv(String)
+- void getTvHorizontal()
+- void getNewSectionSeries()
+- void getFilmTV()
+- void showTvVertical()
+- void showFilmTV()
+- void showNewSectionSeries()
++ void onSelected(SerieModel)
+}
+class com.carlos.cinemovil.activities.DetailSerieActivity {
+~ Toolbar toolbar
+~ TextView tvTitle
+~ ImageView imgCover
+~ MaterialFavoriteButton imgFavorite
+~ FloatingActionButton fabShare
+~ RatingBar ratingBar
+~ String NameFilm
+~ int Id
+~ double Rating
+~ SerieModel serieModel
+~ List<TrailerModel> trailerModel
+~ DBHandler dbHandler
+# void onCreate(Bundle)
+- void getTrailer()
++ {static} void setWindowFlag(Activity,int,boolean)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+utils_extensions.Behavior <|-- utils_extensions.BottomBarBehavior
+adapters.Adapter <|-- adapters.AdapterPelicula
+adapters.AdapterPelicula +.. adapters.AdapterPelicula$onSelectData
+adapters.AdapterPelicula +.. adapters.AdapterPelicula$ViewHolder
+adapters.ViewHolder <|-- adapters.AdapterPelicula$ViewHolder
+androidx.fragment.app.FragmentPagerAdapter <|-- adapters.ViewPageAdapter
+fragments.onSelectData <|.. fragments.FragmentFavoritePeliculas
+androidx.fragment.app.Fragment <|-- fragments.FragmentFavoritePeliculas
+adapters.Adapter <|-- adapters.SerieHorizontalAdapter
+adapters.SerieHorizontalAdapter +.. adapters.SerieHorizontalAdapter$onSelectData
+adapters.SerieHorizontalAdapter +.. adapters.SerieHorizontalAdapter$ViewHolder
+adapters.ViewHolder <|-- adapters.SerieHorizontalAdapter$ViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.carlos.cinemovil.activities.DetailMovieActivity
+java.io.Serializable <|.. modelos.SerieModel
+adapters.Adapter <|-- adapters.AdapterPeliculaVertical
+adapters.AdapterPeliculaVertical +.. adapters.AdapterPeliculaVertical$onSelectData
+adapters.AdapterPeliculaVertical +.. adapters.AdapterPeliculaVertical$ViewHolder
+adapters.ViewHolder <|-- adapters.AdapterPeliculaVertical$ViewHolder
+java.io.Serializable <|.. modelos.PeliculaModel
+android.database.sqlite.SQLiteOpenHelper <|-- BBDD.DBHelper
+adapters.Adapter <|-- adapters.AdapterSeries
+adapters.AdapterSeries +.. adapters.AdapterSeries$onSelectData
+adapters.AdapterSeries +.. adapters.AdapterSeries$ViewHolder
+adapters.ViewHolder <|-- adapters.AdapterSeries$ViewHolder
+fragments.onSelectData <|.. fragments.FragmentFavoriteSeries
+androidx.fragment.app.Fragment <|-- fragments.FragmentFavoriteSeries
+androidx.appcompat.app.AppCompatActivity <|-- com.carlos.cinemovil.activities.MainActivity
+androidx.fragment.app.Fragment <|-- fragments.FragmentFavorite
+fragments.onSelectData <|.. fragments.FragmentPelicula
+fragments.onSelectData <|.. fragments.FragmentPelicula
+androidx.fragment.app.Fragment <|-- fragments.FragmentPelicula
+java.io.Serializable <|.. modelos.TrailerModel
+fragments.onSelectData <|.. fragments.FragmentSeries
+fragments.onSelectData <|.. fragments.FragmentSeries
+androidx.fragment.app.Fragment <|-- fragments.FragmentSeries
+androidx.appcompat.app.AppCompatActivity <|-- com.carlos.cinemovil.activities.DetailSerieActivity
+@enduml

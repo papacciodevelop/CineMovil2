@@ -9,12 +9,13 @@ public class PeliculaModel implements Serializable {
 
     private int Id;
     private String Title;
+    private String ReleaseDate;
+    private String Popularity;
+    private String PosterPath;
     private double VoteAverage;
     private String Overview;
-    private String ReleaseDate;
-    private String PosterPath;
     private String BackdropPath;
-    private String Popularity;
+
 
     public PeliculaModel() {
     }

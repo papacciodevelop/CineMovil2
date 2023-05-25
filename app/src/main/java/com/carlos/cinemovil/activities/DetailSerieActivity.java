@@ -49,7 +49,7 @@ import networking.endpointApi;
 /**
  * Created by Carlos Chica.
  */
-public class DetailTelevisionActivity extends AppCompatActivity {
+public class DetailSerieActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView tvTitle, tvName, tvRating, tvRelease, tvOverview;
@@ -108,14 +108,16 @@ public class DetailTelevisionActivity extends AppCompatActivity {
             Thumbnail = serieModel.getPosterPath();
             movieURL = endpointApi.URLFILM + "" + Id;
 
+
+            tvOverview.setText(Overview);
+            tvTitle.setSelected(true);
+            tvName.setSelected(true);
+
             tvTitle.setText(NameFilm);
             tvName.setText(NameFilm);
             tvRating.setText(Rating + "/10");
             tvRelease.setText(ReleaseDate);
 
-            tvOverview.setText(Overview);
-            tvTitle.setSelected(true);
-            tvName.setSelected(true);
 
             float newValue = (float)Rating;
             ratingBar.setNumStars(5);
@@ -154,12 +156,12 @@ public class DetailTelevisionActivity extends AppCompatActivity {
 
                             // Agrega a favoritos
                             dbHandler.addFavoriteTV(serieModel);
-                            Snackbar.make(buttonView, serieModel.getName() + " Added to Favorite",
+                            Snackbar.make(buttonView, serieModel.getName() + " Añadido a favoritos",
                                     Snackbar.LENGTH_SHORT).show();
                         } else {
                             // Elimina de favoritos
                             dbHandler.deleteFavoriteTV(Id);
-                            Snackbar.make(buttonView, serieModel.getName() + " Removed from Favorite",
+                            Snackbar.make(buttonView, serieModel.getName() + " Eliminado de favoritos  ",
                                     Snackbar.LENGTH_SHORT).show();
                         }
 
@@ -176,7 +178,7 @@ public class DetailTelevisionActivity extends AppCompatActivity {
                 String description = serieModel.getOverview();
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, subject + "\n\n" + description + "\n\n" + movieURL);
-                startActivity(Intent.createChooser(shareIntent, "Bagikan dengan :"));
+                startActivity(Intent.createChooser(shareIntent, "Inicia acción :"));
             }
         });
 
@@ -215,13 +217,13 @@ public class DetailTelevisionActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(DetailTelevisionActivity.this, "Sin datos!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailSerieActivity.this, "Sin datos!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(DetailTelevisionActivity.this,
+                        Toast.makeText(DetailSerieActivity.this,
                                 "Sin internet!", Toast.LENGTH_SHORT).show();
                     }
                 });

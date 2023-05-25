@@ -10,11 +10,12 @@ public class SerieModel implements Serializable {
     private int Id;
     private String Name;
     private double VoteAverage;
-    private String Overview;
-    private String ReleaseDate;
     private String PosterPath;
     private String BackdropPath;
     private String Popularity;
+    private String Overview;
+    private String ReleaseDate;
+
 
     public SerieModel() {
     }

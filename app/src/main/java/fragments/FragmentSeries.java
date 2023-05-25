@@ -21,7 +21,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import com.carlos.cinemovil.R;
-import com.carlos.cinemovil.activities.DetailTelevisionActivity;
+import com.carlos.cinemovil.activities.DetailSerieActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -36,22 +36,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapters.AdapterSeries;
-import adapters.TvHorizontalAdapter;
+import adapters.SerieHorizontalAdapter;
 import modelos.SerieModel;
 import networking.endpointApi;
 /**
  * Created by Carlos Chica.
  */
-public class FragmentSeries extends Fragment implements TvHorizontalAdapter.onSelectData, AdapterSeries.onSelectData{
+public class FragmentSeries extends Fragment implements SerieHorizontalAdapter.onSelectData, AdapterSeries.onSelectData{
 
     private RecyclerView rvNowPlaying, rvFilmRecommend, rvNewSeriesSection;
-    private TvHorizontalAdapter tvHorizontalAdapter;
+    private SerieHorizontalAdapter serieHorizontalAdapter;
     private AdapterSeries adapterSeries;
     private SearchView searchFilm;
     private List<SerieModel> tvPlayNow = new ArrayList<>();
     private List<SerieModel> tvPopular = new ArrayList<>();
     private List<SerieModel> newSeriesSection;
-    private TvHorizontalAdapter newSeriesSectionAdapter;
+    private SerieHorizontalAdapter newSeriesSectionAdapter;
 
     public FragmentSeries() {}
 
@@ -280,10 +280,10 @@ public class FragmentSeries extends Fragment implements TvHorizontalAdapter.onSe
 
 
     private void showTvVertical() {
-        tvHorizontalAdapter = new TvHorizontalAdapter(getActivity(), tvPlayNow, this);
+        serieHorizontalAdapter = new SerieHorizontalAdapter(getActivity(), tvPlayNow, this);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
         rvNowPlaying.setLayoutManager(layoutManager);
-        rvNowPlaying.setAdapter(tvHorizontalAdapter);
+        rvNowPlaying.setAdapter(serieHorizontalAdapter);
         rvNowPlaying.setNestedScrollingEnabled(false);
     }
 
@@ -295,7 +295,7 @@ public class FragmentSeries extends Fragment implements TvHorizontalAdapter.onSe
 
 
     private void showNewSectionSeries() {
-        newSeriesSectionAdapter = new TvHorizontalAdapter(getActivity(), newSeriesSection, this);
+        newSeriesSectionAdapter = new SerieHorizontalAdapter(getActivity(), newSeriesSection, this);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
         rvNewSeriesSection.setLayoutManager(layoutManager);
         rvNewSeriesSection.setAdapter(newSeriesSectionAdapter);
@@ -304,7 +304,7 @@ public class FragmentSeries extends Fragment implements TvHorizontalAdapter.onSe
 
     @Override
     public void onSelected(SerieModel serieModel) {
-        Intent intent = new Intent(getActivity(), DetailTelevisionActivity.class);
+        Intent intent = new Intent(getActivity(), DetailSerieActivity.class);
         intent.putExtra("detailTV", serieModel);
         startActivity(intent);
     }

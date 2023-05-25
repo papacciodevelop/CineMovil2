@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.carlos.cinemovil.R;
-import com.carlos.cinemovil.activities.DetailTelevisionActivity;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.carlos.cinemovil.activities.DetailSerieActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +68,7 @@ public class FragmentFavoriteSeries extends Fragment implements AdapterSeries.on
 
     @Override
     public void onSelected(SerieModel serieModel) {
-        Intent intent = new Intent(getActivity(), DetailTelevisionActivity.class);
+        Intent intent = new Intent(getActivity(), DetailSerieActivity.class);
         intent.putExtra("detailTV", serieModel);
         startActivity(intent);
     }
